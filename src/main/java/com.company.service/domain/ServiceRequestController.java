@@ -1,5 +1,6 @@
-package java.service.domain;
+package com.company.service.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceRequestController {
@@ -14,7 +15,7 @@ public class ServiceRequestController {
         return serviceRequest;
     }
 
-    public void serviceRequest(String clientName, String clientAdd, String clientNo, String date){
+    public void addServiceRequest(String clientName, String clientAdd, String clientNo, String date){
         requestList.addServiceRequest(new Client(clientName, clientAdd, clientNo), date);
     }
 
@@ -34,6 +35,6 @@ public class ServiceRequestController {
     public void assignTechnician(String name){
         if (serviceRequest.getTechnician() == null) {
             serviceRequest.setTechnician(new Technician(name));
-        } else throw new UnsupportedOperationException("Only one technician is allowed for one service request");
+        } else throw new UnsupportedOperationException("Only one technician is allowed for one com.company.com.company.service request");
     }
 }

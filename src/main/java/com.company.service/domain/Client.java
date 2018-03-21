@@ -1,4 +1,4 @@
-package java.service.domain;
+package com.company.service.domain;
 
 import java.util.UUID;
 
@@ -10,7 +10,7 @@ public class Client {
     private String contactNo;
 
     public Client(String name, String address, String contactNo){
-        id = UUID.fromString(name).toString();
+        id = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.contactNo = contactNo;

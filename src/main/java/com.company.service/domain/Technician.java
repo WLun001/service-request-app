@@ -1,4 +1,4 @@
-package java.service.domain;
+package com.company.service.domain;
 
 import java.util.UUID;
 
@@ -8,7 +8,7 @@ public class Technician {
     private String name;
 
     public Technician(String name){
-        this.id = UUID.fromString(name).toString();
+        this.id = UUID.randomUUID().toString();
         this.name = name;
     }
 

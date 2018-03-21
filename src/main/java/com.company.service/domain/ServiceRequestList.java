@@ -1,10 +1,16 @@
-package java.service.domain;
+package com.company.service.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ServiceRequestList implements IServiceRequestList {
     private List<ServiceRequest> serviceRequests;
+
+    public ServiceRequestList(){
+        serviceRequests = new ArrayList<>();
+    }
+
     @Override
     public void addServiceRequest(Client client, String date) {
         serviceRequests.add(new ServiceRequest(client, date));
