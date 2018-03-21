@@ -15,8 +15,8 @@ public class ServiceRequestController {
         return serviceRequest;
     }
 
-    public void addServiceRequest(String clientName, String clientAdd, String clientNo, String date){
-        requestList.addServiceRequest(new Client(clientName, clientAdd, clientNo), date);
+    public void addServiceRequest(Client client, String date){
+        requestList.addServiceRequest(client, date);
     }
 
     public ServiceRequest searchServiceRequest(String requestId){
