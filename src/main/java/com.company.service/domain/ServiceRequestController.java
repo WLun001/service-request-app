@@ -32,9 +32,13 @@ public class ServiceRequestController {
         return requestList.getServiceRequestList();
     }
 
-    public void assignTechnician(String name){
+    public void assignTechnician(Technician technician){
         if (serviceRequest.getTechnician() == null) {
-            serviceRequest.setTechnician(new Technician(name));
-        } else throw new UnsupportedOperationException("Only one technician is allowed for one com.company.com.company.service request");
+            serviceRequest.setTechnician(technician);
+        } else throw new UnsupportedOperationException("Only one technician is allowed for one service request");
+    }
+
+    public void addServiceCharge(double serviceCharge){
+        serviceRequest.setServiceCharge(serviceCharge);
     }
 }
