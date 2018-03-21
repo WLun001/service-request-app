@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class SampleData {
 
-    public static ArrayList<Client> getSampleClients(){
+    public static ArrayList<Client> getSampleClients() {
         ArrayList<Client> clients = new ArrayList<>();
         clients.add(new Client("Dheeno", "Ampang", "012-2722330"));
         clients.add(new Client("Hong Ah Kau", "Kajang", "012-2724330"));
@@ -19,7 +19,7 @@ public class SampleData {
         return clients;
     }
 
-    public static ArrayList<Technician> getSampleTechnicians(){
+    public static ArrayList<Technician> getSampleTechnicians() {
         ArrayList<Technician> technicians = new ArrayList<>();
         technicians.add(new Technician("Chia Kim Hui"));
         technicians.add(new Technician("Lee Pei Ling"));

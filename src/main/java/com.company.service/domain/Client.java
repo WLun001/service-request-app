@@ -9,7 +9,7 @@ public class Client {
     private String address;
     private String contactNo;
 
-    public Client(String name, String address, String contactNo){
+    public Client(String name, String address, String contactNo) {
         id = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;

@@ -7,7 +7,7 @@ public class Technician {
     private String id;
     private String name;
 
-    public Technician(String name){
+    public Technician(String name) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
     }

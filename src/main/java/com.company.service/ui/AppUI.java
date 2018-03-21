@@ -1,8 +1,11 @@
 package com.company.service.ui;
 
 import com.company.service.domain.*;
+
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class AppUI implements IUserInterface {
@@ -11,9 +14,11 @@ public class AppUI implements IUserInterface {
     private Scanner scanner;
     private ArrayList<Client> clients;
     private ArrayList<Technician> technicians;
-    public AppUI(){
+
+    public AppUI() {
         scanner = new Scanner(System.in);
     }
+
     @Override
     public void setController(ServiceRequestController controller) {
         this.controller = controller;
@@ -23,10 +28,10 @@ public class AppUI implements IUserInterface {
 
     @Override
     public void start() {
-       displayMainMenu();
+        displayMainMenu();
     }
 
-    private void displayMainMenu(){
+    private void displayMainMenu() {
         int choice;
         do {
             System.out.println("Do you want to:");
@@ -76,7 +81,7 @@ public class AppUI implements IUserInterface {
     }
 
     private void displayClients() {
-        for (Client client : clients){
+        for (Client client : clients) {
             System.out.println("ID: " + client.getId()
                     + "\tClient Name: " + client.getName());
         }
@@ -91,8 +96,7 @@ public class AppUI implements IUserInterface {
         if (client.size() > 0) {
             controller.addServiceRequest(client.get(0), LocalDateTime.now().toString());
             System.out.println("Successfully added service request");
-        }
-        else System.out.println("No matches found");
+        } else System.out.println("No matches found");
     }
 
 
@@ -100,7 +104,7 @@ public class AppUI implements IUserInterface {
         selectServiceRequest();
         int choice;
         do {
-            System.out.println("Do you want to:");
+            System.out.println("\nDo you want to:");
             System.out.println("1. Assign technician");
             System.out.println("2. Add service charge");
             System.out.println("3. Back to Main menu");
@@ -124,7 +128,7 @@ public class AppUI implements IUserInterface {
         } while (choice != 3);
     }
 
-    private void displayServiceRequest(ServiceRequest request){
+    private void displayServiceRequest(ServiceRequest request) {
         if (request == null)
             System.out.println("No matches found");
         else {
@@ -145,14 +149,14 @@ public class AppUI implements IUserInterface {
         displayServiceRequest(controller.searchServiceRequest(requestId));
     }
 
-    private void displayTechnicians(){
-        for (Technician technician : technicians){
+    private void displayTechnicians() {
+        for (Technician technician : technicians) {
             System.out.println("ID: " + technician.getId()
                     + "\tTechnician Name: " + technician.getName());
         }
     }
 
-    private void assignTechnician(){
+    private void assignTechnician() {
         displayTechnicians();
         System.out.print("Enter technician id to assign : ");
         scanner.nextLine();
@@ -164,7 +168,7 @@ public class AppUI implements IUserInterface {
         }
     }
 
-    private void addServiceCharge(){
+    private void addServiceCharge() {
         System.out.print("Enter service charge : ");
         scanner.nextLine();
         controller.addServiceCharge(scanner.nextDouble());

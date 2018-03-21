@@ -9,7 +9,7 @@ public class ServiceRequest {
     private Technician technician;
     private double serviceCharge;
 
-    public ServiceRequest(Client client, String date){
+    public ServiceRequest(Client client, String date) {
         this.id = UUID.randomUUID().toString();
         this.client = client;
         this.date = date;
@@ -31,12 +31,12 @@ public class ServiceRequest {
         return technician;
     }
 
-    public double getServiceCharge() {
-        return serviceCharge;
-    }
-
     public void setTechnician(Technician technician) {
         this.technician = technician;
+    }
+
+    public double getServiceCharge() {
+        return serviceCharge;
     }
 
     public void setServiceCharge(double serviceCharge) {

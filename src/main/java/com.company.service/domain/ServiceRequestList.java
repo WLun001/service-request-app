@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class ServiceRequestList implements IServiceRequestList {
     private List<ServiceRequest> serviceRequests;
 
-    public ServiceRequestList(){
+    public ServiceRequestList() {
         serviceRequests = new ArrayList<>();
     }
 
@@ -18,6 +18,7 @@ public class ServiceRequestList implements IServiceRequestList {
 
     /**
      * Find the first matched  of {@link ServiceRequest}
+     *
      * @param requestId Unique id of {@link ServiceRequest}
      * @return {@link ServiceRequest}
      */
