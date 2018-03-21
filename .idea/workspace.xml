@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2822c624-ee7f-429e-bcb1-c93318b693c5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -50,7 +51,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServiceRequestController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ServiceRequestController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/service/domain/ServiceRequestController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="682">
@@ -65,6 +66,16 @@
                 <element signature="e#902#903#0" expanded="true" />
                 <element signature="e#960#961#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="372">
+              <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -156,6 +167,7 @@
         <option value="$PROJECT_DIR$/src/main/java/service/domain/IServiceRequestList.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/domain/ServiceRequestList.java" />
         <option value="$PROJECT_DIR$/src/main/java/service/domain/ServiceRequestController.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -311,12 +323,12 @@
       <updated>1521479996813</updated>
       <workItem from="1521480001667" duration="873000" />
       <workItem from="1521538915638" duration="5080000" />
-      <workItem from="1521593449817" duration="1580000" />
+      <workItem from="1521593449817" duration="1873000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7533000" />
+    <option name="totallyTimeSpent" value="7826000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="61" y="-4" width="1859" height="1084" extended-state="6" />
@@ -429,13 +441,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/service/domain/SampleData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
@@ -534,6 +539,14 @@
             <element signature="e#902#903#0" expanded="true" />
             <element signature="e#960#961#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
