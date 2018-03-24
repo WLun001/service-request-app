@@ -1,0 +1,113 @@
+@startuml
+domain::ServiceRequestList ..> domain::IServiceRequestList : <<implement>>
+domain::ServiceRequest --> "1" domain::Client : has
+domain::ServiceRequest --> "1" domain::Technician : has
+domain::ServiceRequestController --> "1" domain::ServiceRequest
+domain::ServiceRequestController --> "1" domain::IServiceRequestList
+ui::AppUI ..> ui::IUserInterface : <<implement>>
+ui::ServiceRequestApp --> "1" ui::IUserInterface
+
+
+class domain::Client{
+ -id: String
+ -name: String
+ -address: String
+ -contactNo: String
+ {method}<<create>>
+ +Client(name:String, address:String, contactNo:String)
+ +getId():String
+ +getName():String
+ +getAddress():String
+ +getContactNo():String
+}
+
+class domain::Technician{
+ -id: String
+ -name: String
+ {method}<<create>>
+ +Technician(name:String)
+ +getId():String
+ +getName():String
+}
+
+class domain::ServiceRequest{
+ -id:String
+ -date:String
+ -client:Client
+ -technician:Technician
+ -serviceCharge:double
+ {method}<<create>>
+ +ServiceRequest(client:Client, date:String
+ +getId():String
+ +getDate():String
+ +getClient():Client
+ +getTechnician():Technician
+ +setTechnician(technician:Technician)
+ +setServiceCharge(serviceCharge:double)
+}
+
+interface domain::IServiceRequestList{
++addServiceRequest(client:Client, date:String)
++searchServiceRequest(requestId:String):ServiceRequest
++getServiceRequestCount():int
++getServiceRequestList():List<ServiceRequest>
+}
+
+
+class domain::ServiceRequestList{
+ -serviceRequests:List<ServiceRequest>
+ {method}<<create>>
+ +ServiceRequestList()
+ +addServiceRequest(client:Client, date:String)
+ +searchServiceRequest(requestId:String):ServiceRequest
+ +getServiceRequestCount():int
+ +getServiceRequestList():List<ServiceRequest>
+}
+
+class domain::ServiceRequestController{
+ -requestList:IServiceRequestList
+ -serviceRequest:ServiceRequest
+ {method}<<create>>
+ ServiceRequestController()
+ +getSelectedServiceRequest():ServiceRequest
+ +addServiceRequest(client:Client, date:String)
+ +searchServiceRequest(requestId:String):ServiceRequest
+ +getNumberOfServiceRequest():int
+ +getServiceRequestList():List<ServiceRequest>
+ +assignTechnicnian(technician:Technicnan)
+ +addServiceCharge(serviceCharge:double)
+}
+
+interface ui::IUserInterface{
+ +setController(controller:ServiceRequestController)
+ +start()
+}
+
+class ui::AppUI{
+ -controller:ServiceRequestController
+ -scanner:Scanner
+ -clients:ArrayList<Client>
+ -technician:ArrayList<Technician>
+ {method}<<create>>
+ +AppUI()
+ +setController(controller:ServiceRequestController)
+ +start()
+ -displayMainMenu()
+ -displayServiceRequests()
+ -displayClients()
+ -createNewServiceRequest()
+ -dispalayUpdateServiceRequestMenu()
+ -displayServiceRequest(request:ServiceRequest)
+ -selectServiceRequest()
+ -displayTechnicians()
+ -assignTechnician()
+ -addServiceCharge()
+}
+
+class ui::ServiceRequestApp{
+ {static} main(args:String[])
+}
+
+
+
+@enduml
