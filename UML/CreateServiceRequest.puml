@@ -1,0 +1,19 @@
+@startuml
+title Create service request
+Actor ServiceManager
+Boundary AppUI
+Control Controller
+Collections ServiceRequestList
+
+ServiceManager -> AppUI: createServiceRequest()
+AppUI -> Controller: createServiceRequest()
+Controller -> ServiceRequestList: createServiceRequest()
+create entity ServiceRequest
+ServiceRequestList -> ServiceRequest: <<create >>
+
+ServiceRequest --> ServiceRequestList
+ServiceRequestList --> Controller
+Controller --> AppUI
+AppUI --> ServiceManager
+
+@enduml

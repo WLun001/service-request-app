@@ -1,0 +1,24 @@
+@startuml
+title Assign technician to service request
+Actor ServiceManager
+ServiceManager -> AppUI: AssignTechnician()
+
+AppUI -> Controller: GetTechnician()
+AppUI <-- Controller: List<Technician>
+Controller -> ServiceRequestList: GetTechnician()
+Controller <-- ServiceRequestList: List<Technician>
+'loop not found
+'    AppUI -> Controller : searchServiceRequest(requestId)
+'    AppController -> ServiceRequestList : search(requestId)
+'    alt request found
+'        ServiceRequestList --> Controller : request
+'        Controller --> AppUI : success
+'    else request not found
+'        ServiceRequestList --> Controller : Error("Service request not found")
+'        Controller --> AppUI : error
+'    end
+'end
+ServiceManager <-- AppUI: Technician
+
+
+@enduml
