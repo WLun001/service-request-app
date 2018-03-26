@@ -1,19 +1,18 @@
 package com.company.service.ui;
 
-import com.company.service.domain.*;
+import com.company.service.dbHelper.*;
+import com.company.service.domain.Controller;
+import com.company.service.domain.ServiceRequest;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class AppUI implements IUserInterface {
 
+    PersonList personList;
     private Controller controller;
     private Scanner scanner;
-    private ArrayList<Client> clients;
-    private ArrayList<Technician> technicians;
 
     public AppUI() {
         scanner = new Scanner(System.in);
@@ -22,8 +21,6 @@ public class AppUI implements IUserInterface {
     @Override
     public void setController(Controller controller) {
         this.controller = controller;
-        clients = SampleData.getSampleClients();
-        technicians = SampleData.getSampleTechnicians();
     }
 
     @Override
@@ -81,7 +78,8 @@ public class AppUI implements IUserInterface {
     }
 
     private void displayClients() {
-        for (Client client : clients) {
+        personList = new ClientList();
+        for (Person client : personList.getPersonList()) {
             System.out.println("ID: " + client.getId()
                     + "\tClient Name: " + client.getName());
         }
@@ -92,9 +90,9 @@ public class AppUI implements IUserInterface {
         System.out.println("Enter client ID");
         scanner.nextLine();
         String clientId = scanner.nextLine();
-        List<Client> client = clients.stream().filter(c -> c.getId().equals(clientId)).collect(Collectors.toList());
-        if (client.size() > 0) {
-            controller.addServiceRequest(client.get(0), LocalDateTime.now().toString());
+        Person client = personList.search(clientId);
+        if (client != null) {
+            controller.addServiceRequest((Client) client, LocalDateTime.now().toString());
             System.out.println("Successfully added service request");
         } else System.out.println("No matches found");
     }
@@ -150,7 +148,8 @@ public class AppUI implements IUserInterface {
     }
 
     private void displayTechnicians() {
-        for (Technician technician : technicians) {
+        personList = new TechnicianList();
+        for (Person technician : personList.getPersonList()) {
             System.out.println("ID: " + technician.getId()
                     + "\tTechnician Name: " + technician.getName());
         }
@@ -161,9 +160,9 @@ public class AppUI implements IUserInterface {
         System.out.print("Enter technician id to assign : ");
         scanner.nextLine();
         String techId = scanner.nextLine();
-        List<Technician> technician = technicians.stream().filter(t -> t.getId().equals(techId)).collect(Collectors.toList());
-        if (technician.size() > 0) {
-            controller.assignTechnician(technician.get(0));
+        Person technician = personList.search(techId);
+        if (technician != null) {
+            controller.assignTechnician((Technician) technician);
             System.out.println("Successfully assigned technician");
         }
     }

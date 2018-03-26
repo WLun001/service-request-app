@@ -1,5 +1,8 @@
 package com.company.service.domain;
 
+import com.company.service.dbHelper.Client;
+import com.company.service.dbHelper.Technician;
+
 import java.util.List;
 
 public class Controller {

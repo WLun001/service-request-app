@@ -4,5 +4,6 @@ import com.company.service.domain.Controller;
 
 interface IUserInterface {
     void setController(Controller controller);
+
     void start();
 }
