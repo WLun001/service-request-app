@@ -6,17 +6,17 @@ dbHelper::PersonList <|-- dbHelper::ClientList
 dbHelper::PersonList <|-- dbHelper::TechnicianList
 
 domain::ServiceRequest --> "1" dbHelper::Technician
-domain::ServiceRequest --> "1" dbHelper::Client
+domain::ServiceRequest -left-> "1" dbHelper::Client
 
 domain::ServiceRequestList ..> domain::IServiceRequestList : <<implement>>
 
-domain::ServiceRequestController --> "1" domain::ServiceRequest
-domain::ServiceRequestController --> "1" domain::IServiceRequestList
+domain::Controller --> "1" domain::ServiceRequest
+domain::Controller --> "1" domain::IServiceRequestList
 
-ui::AppUI ..> ui::IUserInterface : <<implement>>
+ui::AppUI .right.> ui::IUserInterface : <<implement>>
 ui::ServiceRequestApp --> "1" ui::IUserInterface
-ui::ServiceRequestApp ..> "1" dbHelper::TechnicianList
-ui::ServiceRequestApp ..> "1" dbHelper::ClientList
+ui::ServiceRequestApp .up.> "1" dbHelper::TechnicianList
+ui::ServiceRequestApp .up.> "1" dbHelper::ClientList
 ui::ServiceRequestApp ..> "1" ui::AppUI
 
 abstract class dbHelper::Person{
@@ -97,39 +97,37 @@ class domain::ServiceRequestList{
  +getServiceRequestList():List<ServiceRequest>
 }
 
-class domain::ServiceRequestController{
+class domain::Controller{
  -requestList:IServiceRequestList
  -serviceRequest:ServiceRequest
  {method}<<create>>
- ServiceRequestController()
+ +Controller()
  +getSelectedServiceRequest():ServiceRequest
  +addServiceRequest(client:Client, date:String)
  +searchServiceRequest(requestId:String):ServiceRequest
  +getNumberOfServiceRequest():int
  +getServiceRequestList():List<ServiceRequest>
- +assignTechnicnian(technician:Technicnan)
+ +assignTechnician(technician:Technician)
  +addServiceCharge(serviceCharge:double)
 }
 
 interface ui::IUserInterface{
- +setController(controller:ServiceRequestController)
+ +setController(controller:Controller)
  +start()
 }
 
 class ui::AppUI{
- -controller:ServiceRequestController
+ -controller:Controller
  -scanner:Scanner
- -clients:ArrayList<Client>
- -technician:ArrayList<Technician>
+ -persons:PersonList
  {method}<<create>>
  +AppUI()
- +setController(controller:ServiceRequestController)
+ +setController(controller:Controller)
  +start()
  -displayMainMenu()
  -displayServiceRequests()
- -displayClients()
+ -displayPerson(pList:PersonList, message:String)
  -createNewServiceRequest()
- -dispalayUpdateServiceRequestMenu()
  -displayServiceRequest(request:ServiceRequest)
  -selectServiceRequest()
  -displayTechnicians()

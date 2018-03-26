@@ -1,0 +1,92 @@
+@startuml
+
+domain .down.> ui
+dbHelper .down.> ui
+package "dbHelper"{
+Person <|-- Client
+Person <|-- Technician
+
+PersonList <|-- ClientList
+PersonList <|-- TechnicianList
+}
+
+package "domain"{
+class ServiceRequest
+ServiceRequestList ..> "IServiceRequestList"
+
+Controller --> "1"  ServiceRequest
+Controller --> "1" IServiceRequestList
+}
+
+
+package "ui" {
+AppUI ..> IUserInterface : <<implement>>
+ServiceRequestApp -up-> "1" IUserInterface
+ServiceRequestApp ..> "1" AppUI
+}
+
+abstract class Person{
+ -id: String
+ -name: String
+ -address: String
+ -contactNo: String
+}
+
+class Client{
+ -address: String
+ -contactNo: String
+}
+
+class Technician{
+}
+
+abstract class PersonList{
+ #persons:List<Person>
+}
+
+class ClientList{
+}
+
+class TechnicianList{
+}
+
+class ServiceRequest{
+ -id:String
+ -date:String
+ -client:Client
+ -technician:Technician
+ -serviceCharge:double
+}
+
+interface IServiceRequestList{
++addServiceRequest(client:Client, date:String)
++searchServiceRequest(requestId:String):ServiceRequest
++getServiceRequestCount():int
++getServiceRequestList():List<ServiceRequest>
+}
+
+
+class ServiceRequestList{
+ -serviceRequests:List<ServiceRequest>
+}
+
+class Controller{
+ -requestList:IServiceRequestList
+ -serviceRequest:ServiceRequest
+}
+
+interface IUserInterface{
+ +setController(controller:Controller)
+ +start()
+}
+
+class AppUI{
+ -controller:Controller
+ -scanner:Scanner
+ -clients:ArrayList<Client>
+ -persons:PersonList
+}
+
+class ServiceRequestApp{
+}
+@enduml

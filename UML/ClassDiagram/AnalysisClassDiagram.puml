@@ -1,0 +1,81 @@
+@startuml
+dbHelper::Person <|-- dbHelper::Client
+dbHelper::Person <|-- dbHelper::Technician
+
+dbHelper::PersonList <|-- dbHelper::ClientList
+dbHelper::PersonList <|-- dbHelper::TechnicianList
+
+domain::ServiceRequest --> "1" dbHelper::Technician
+domain::ServiceRequest -left-> "1" dbHelper::Client
+
+domain::ServiceRequestList ..> domain::IServiceRequestList : <<implement>>
+
+domain::Controller --> "1" domain::ServiceRequest
+domain::Controller --> "1" domain::IServiceRequestList
+
+ui::AppUI .right.> ui::IUserInterface : <<implement>>
+ui::ServiceRequestApp --> "1" ui::IUserInterface
+ui::ServiceRequestApp .up.> "1" dbHelper::TechnicianList
+ui::ServiceRequestApp .up.> "1" dbHelper::ClientList
+ui::ServiceRequestApp ..> "1" ui::AppUI
+
+abstract class dbHelper::Person{
+ -id
+ -name
+ -address
+ -contactNo
+}
+
+class dbHelper::Client{
+ -address
+ -contactNo
+}
+
+class dbHelper::Technician{
+}
+
+abstract class dbHelper::PersonList{
+ #persons
+}
+
+class dbHelper::ClientList{
+}
+
+class dbHelper::TechnicianList{
+}
+
+class domain::ServiceRequest{
+ -id
+ -date
+ -client
+ -technician
+ -serviceCharge
+}
+
+interface domain::IServiceRequestList{
+}
+
+
+class domain::ServiceRequestList{
+ -serviceRequests
+}
+
+class domain::Controller{
+ -requestList
+ -serviceRequest
+}
+
+interface ui::IUserInterface{
+ +setController(controller:Controller)
+ +start()
+}
+
+class ui::AppUI{
+ -controller
+ -scanner
+ -persons
+}
+
+class ui::ServiceRequestApp{
+}
+@enduml
