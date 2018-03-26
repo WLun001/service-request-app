@@ -1,0 +1,15 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor ServiceManager
+actor Client
+actor Technician
+rectangle  "Service Request System"{
+ ServiceManager -- (Create service request)
+ (Create service request) -- Client
+ (Create service request) -- Technician
+ (Assign technician) .> (Search service request) : include
+ (Add service charge) .> (Search service request) : include
+
+}
+@enduml
