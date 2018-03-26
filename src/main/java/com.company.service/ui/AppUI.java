@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class AppUI implements IUserInterface {
 
-    private ServiceRequestController controller;
+    private Controller controller;
     private Scanner scanner;
     private ArrayList<Client> clients;
     private ArrayList<Technician> technicians;
@@ -20,7 +20,7 @@ public class AppUI implements IUserInterface {
     }
 
     @Override
-    public void setController(ServiceRequestController controller) {
+    public void setController(Controller controller) {
         this.controller = controller;
         clients = SampleData.getSampleClients();
         technicians = SampleData.getSampleTechnicians();

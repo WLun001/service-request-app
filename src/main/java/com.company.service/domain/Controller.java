@@ -2,11 +2,11 @@ package com.company.service.domain;
 
 import java.util.List;
 
-public class ServiceRequestController {
+public class Controller {
     private IServiceRequestList requestList;
     private ServiceRequest serviceRequest;
 
-    public ServiceRequestController() {
+    public Controller() {
         requestList = new ServiceRequestList();
     }
 

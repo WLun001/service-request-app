@@ -1,8 +1,8 @@
 package com.company.service.ui;
 
-import com.company.service.domain.ServiceRequestController;
+import com.company.service.domain.Controller;
 
 interface IUserInterface {
-    void setController(ServiceRequestController controller);
+    void setController(Controller controller);
     void start();
 }
