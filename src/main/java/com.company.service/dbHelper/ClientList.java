@@ -9,11 +9,6 @@ public class ClientList extends PersonList {
         init();
     }
 
-    @Override
-    public List<Person> getPersonList() {
-        return persons;
-    }
-
     private void init() {
         ArrayList<Person> clients = new ArrayList<>();
         clients.add(new Client("Dheeno", "Ampang", "012-2722330"));

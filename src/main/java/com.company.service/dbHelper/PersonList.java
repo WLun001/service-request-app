@@ -16,5 +16,7 @@ public abstract class PersonList {
         else return null;
     }
 
-    public abstract List<Person> getPersonList();
+    public List<Person> getPersonList(){
+        return persons;
+    }
 }

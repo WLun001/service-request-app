@@ -13,6 +13,8 @@ public class AppUI implements IUserInterface {
     PersonList personList;
     private Controller controller;
     private Scanner scanner;
+    private final String c = "Client";
+    private final String t = "Technician";
 
     public AppUI() {
         scanner = new Scanner(System.in);
@@ -35,14 +37,15 @@ public class AppUI implements IUserInterface {
             System.out.println("1. Display all service requests");
             System.out.println("2. Display all clients");
             System.out.println("3. Create new service request");
-            System.out.println("4. Update service request");
-            System.out.println("5. Exit");
+            System.out.println("4. Assign Technician to service request");
+            System.out.println("5. Add service charge to service request");
+            System.out.println("6. Exit");
 
-            System.out.print("Enter your choice (1-5): ");
+            System.out.print("Enter your choice (1-6): ");
             choice = scanner.nextInt();
-            while (choice < 1 || choice > 5) {
+            while (choice < 1 || choice > 6) {
                 System.out.println("Invalid choice.");
-                System.out.print("Enter your choice (1-5): ");
+                System.out.print("Enter your choice (1-6): ");
                 choice = scanner.nextInt();
             }
             switch (choice) {
@@ -50,19 +53,28 @@ public class AppUI implements IUserInterface {
                     displayServiceRequests();
                     break;
                 case 2:
-                    displayClients();
+                    displayPerson(new ClientList(), c);
                     break;
-                case 3:
+                case 3: {
+                    displayPerson(new ClientList(), c);
                     createNewServiceRequest();
+                }
                     break;
-                case 4:
-                    displayUpdateServiceRequestMenu();
+                case 4: {
+                    selectServiceRequest();
+                    displayPerson(new TechnicianList(), t);
+                    assignTechnician();
+                }
                     break;
-                case 5:
+                case 5: {
+                    selectServiceRequest();
+                    addServiceCharge();
+                }
+                case 6:
                     break;
             }
             System.out.println();
-        } while (choice != 5);
+        } while (choice != 6);
     }
 
     private void displayServiceRequests() {
@@ -77,16 +89,15 @@ public class AppUI implements IUserInterface {
         }
     }
 
-    private void displayClients() {
-        personList = new ClientList();
-        for (Person client : personList.getPersonList()) {
-            System.out.println("ID: " + client.getId()
-                    + "\tClient Name: " + client.getName());
+    private void displayPerson(PersonList pList, String message) {
+        personList = pList;
+        for (Person person : personList.getPersonList()) {
+            System.out.println("ID: " + person.getId()
+                    + "\t"+ message+  "Name: " + person.getName());
         }
     }
 
     private void createNewServiceRequest() {
-        displayClients();
         System.out.println("Enter client ID");
         scanner.nextLine();
         String clientId = scanner.nextLine();
@@ -95,35 +106,6 @@ public class AppUI implements IUserInterface {
             controller.addServiceRequest((Client) client, LocalDateTime.now().toString());
             System.out.println("Successfully added service request");
         } else System.out.println("No matches found");
-    }
-
-
-    private void displayUpdateServiceRequestMenu() {
-        selectServiceRequest();
-        int choice;
-        do {
-            System.out.println("\nDo you want to:");
-            System.out.println("1. Assign technician");
-            System.out.println("2. Add service charge");
-            System.out.println("3. Back to Main menu");
-
-            System.out.print("Enter your choice (1-3): ");
-            choice = scanner.nextInt();
-            while (choice < 1 || choice > 3) {
-                System.out.println("Invalid choice.");
-                System.out.print("Enter your choice (1-3): ");
-                choice = scanner.nextInt();
-            }
-            switch (choice) {
-                case 1:
-                    assignTechnician();
-                    break;
-                case 2:
-                    addServiceCharge();
-                    break;
-            }
-            System.out.println();
-        } while (choice != 3);
     }
 
     private void displayServiceRequest(ServiceRequest request) {
@@ -147,16 +129,7 @@ public class AppUI implements IUserInterface {
         displayServiceRequest(controller.searchServiceRequest(requestId));
     }
 
-    private void displayTechnicians() {
-        personList = new TechnicianList();
-        for (Person technician : personList.getPersonList()) {
-            System.out.println("ID: " + technician.getId()
-                    + "\tTechnician Name: " + technician.getName());
-        }
-    }
-
     private void assignTechnician() {
-        displayTechnicians();
         System.out.print("Enter technician id to assign : ");
         scanner.nextLine();
         String techId = scanner.nextLine();
