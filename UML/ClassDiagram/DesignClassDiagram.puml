@@ -1,33 +1,66 @@
 @startuml
+dbHelper::Person <|-- dbHelper::Client
+dbHelper::Person <|-- dbHelper::Technician
+
+dbHelper::PersonList <|-- dbHelper::ClientList
+dbHelper::PersonList <|-- dbHelper::TechnicianList
+
+domain::ServiceRequest --> "1" dbHelper::Technician
+domain::ServiceRequest --> "1" dbHelper::Client
+
 domain::ServiceRequestList ..> domain::IServiceRequestList : <<implement>>
-domain::ServiceRequest --> "1" domain::Client : has
-domain::ServiceRequest --> "1" domain::Technician : has
+
 domain::ServiceRequestController --> "1" domain::ServiceRequest
 domain::ServiceRequestController --> "1" domain::IServiceRequestList
+
 ui::AppUI ..> ui::IUserInterface : <<implement>>
 ui::ServiceRequestApp --> "1" ui::IUserInterface
+ui::ServiceRequestApp ..> "1" dbHelper::TechnicianList
+ui::ServiceRequestApp ..> "1" dbHelper::ClientList
+ui::ServiceRequestApp ..> "1" ui::AppUI
 
-
-class domain::Client{
+abstract class dbHelper::Person{
  -id: String
  -name: String
  -address: String
  -contactNo: String
  {method}<<create>>
- +Client(name:String, address:String, contactNo:String)
+ +Person(name:String)
  +getId():String
  +getName():String
+}
+
+class dbHelper::Client{
+ -address: String
+ -contactNo: String
+ {method}<<create>>
+ +Client(name:String, address:String, contactNo:String)
  +getAddress():String
  +getContactNo():String
 }
 
-class domain::Technician{
- -id: String
- -name: String
+class dbHelper::Technician{
  {method}<<create>>
  +Technician(name:String)
- +getId():String
- +getName():String
+}
+
+abstract class dbHelper::PersonList{
+ #persons:List<Person>
+ {method}<<create>>
+ +PersonList()
+ +search(id:String):Person
+ +getPersonList():List<Person>
+ #{abstract}init()
+}
+
+class dbHelper::ClientList{
+ {method}<<create>>
+ +ClientList()
+}
+
+class dbHelper::TechnicianList{
+ {method}<<create>>
+ +TechnicianList()
 }
 
 class domain::ServiceRequest{
@@ -107,7 +140,4 @@ class ui::AppUI{
 class ui::ServiceRequestApp{
  {static} main(args:String[])
 }
-
-
-
 @enduml
