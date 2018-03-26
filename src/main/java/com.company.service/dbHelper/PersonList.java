@@ -19,4 +19,6 @@ public abstract class PersonList {
     public List<Person> getPersonList(){
         return persons;
     }
+
+    protected abstract void init();
 }

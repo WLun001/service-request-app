@@ -1,7 +1,6 @@
 package com.company.service.dbHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TechnicianList extends PersonList {
 
@@ -10,11 +9,7 @@ public class TechnicianList extends PersonList {
     }
 
     @Override
-    public List<Person> getPersonList() {
-        return persons;
-    }
-
-    private void init() {
+    protected void init() {
         ArrayList<Person> technicians = new ArrayList<>();
         technicians.add(new Technician("Chia Kim Hui"));
         technicians.add(new Technician("Lee Pei Ling"));

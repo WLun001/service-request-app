@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class AppUI implements IUserInterface {
 
-    PersonList personList;
+    private PersonList personList;
     private Controller controller;
     private Scanner scanner;
     private final String c = "Client";

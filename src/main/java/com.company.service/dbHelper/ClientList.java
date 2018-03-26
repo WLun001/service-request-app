@@ -1,7 +1,6 @@
 package com.company.service.dbHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ClientList extends PersonList {
 
@@ -9,7 +8,8 @@ public class ClientList extends PersonList {
         init();
     }
 
-    private void init() {
+    @Override
+    protected void init() {
         ArrayList<Person> clients = new ArrayList<>();
         clients.add(new Client("Dheeno", "Ampang", "012-2722330"));
         clients.add(new Client("Hong Ah Kau", "Kajang", "012-2724330"));
