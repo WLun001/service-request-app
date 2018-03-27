@@ -1,50 +1,50 @@
 @startuml
-dbHelper::Person <|-- dbHelper::Client
-dbHelper::Person <|-- dbHelper::Technician
+service.dbHelper::Person <|-- service.dbHelper::Client
+service.dbHelper::Person <|-- service.dbHelper::Technician
 
-dbHelper::PersonList <|-- dbHelper::ClientList
-dbHelper::PersonList <|-- dbHelper::TechnicianList
+service.dbHelper::PersonList <|-- service.dbHelper::ClientList
+service.dbHelper::PersonList <|-- service.dbHelper::TechnicianList
 
-domain::ServiceRequest --> "1" dbHelper::Technician
-domain::ServiceRequest -left-> "1" dbHelper::Client
+service.domain::ServiceRequest --> "1" service.dbHelper::Technician
+service.domain::ServiceRequest -left-> "1" service.dbHelper::Client
 
-domain::ServiceRequestList ..> domain::IServiceRequestList : <<implement>>
+service.domain::ServiceRequestList ..> service.domain::IServiceRequestList : <<implement>>
 
-domain::Controller --> "1" domain::ServiceRequest
-domain::Controller --> "1" domain::IServiceRequestList
+service.domain::Controller --> "1" service.domain::ServiceRequest
+service.domain::Controller --> "1" service.domain::IServiceRequestList
 
-ui::AppUI .right.> ui::IUserInterface : <<implement>>
-ui::ServiceRequestApp --> "1" ui::IUserInterface
-ui::ServiceRequestApp .up.> "1" dbHelper::TechnicianList
-ui::ServiceRequestApp .up.> "1" dbHelper::ClientList
-ui::ServiceRequestApp ..> "1" ui::AppUI
+service.ui::AppUI .right.> service.ui::IUserInterface : <<implement>>
+service.ui::ServiceRequestApp --> "1" service.ui::IUserInterface
+service.ui::ServiceRequestApp .up.> "1" service.dbHelper::TechnicianList
+service.ui::ServiceRequestApp .up.> "1" service.dbHelper::ClientList
+service.ui::ServiceRequestApp ..> "1" service.ui::AppUI
 
-abstract class dbHelper::Person{
+abstract class service.dbHelper::Person{
  -id
  -name
  -address
  -contactNo
 }
 
-class dbHelper::Client{
+class service.dbHelper::Client{
  -address
  -contactNo
 }
 
-class dbHelper::Technician{
+class service.dbHelper::Technician{
 }
 
-abstract class dbHelper::PersonList{
+abstract class service.dbHelper::PersonList{
  #persons
 }
 
-class dbHelper::ClientList{
+class service.dbHelper::ClientList{
 }
 
-class dbHelper::TechnicianList{
+class service.dbHelper::TechnicianList{
 }
 
-class domain::ServiceRequest{
+class service.domain::ServiceRequest{
  -id
  -date
  -client
@@ -52,30 +52,30 @@ class domain::ServiceRequest{
  -serviceCharge
 }
 
-interface domain::IServiceRequestList{
+interface service.domain::IServiceRequestList{
 }
 
 
-class domain::ServiceRequestList{
+class service.domain::ServiceRequestList{
  -serviceRequests
 }
 
-class domain::Controller{
+class service.domain::Controller{
  -requestList
  -serviceRequest
 }
 
-interface ui::IUserInterface{
+interface service.ui::IUserInterface{
  +setController(controller:Controller)
  +start()
 }
 
-class ui::AppUI{
+class service.ui::AppUI{
  -controller
  -scanner
  -persons
 }
 
-class ui::ServiceRequestApp{
+class service.ui::ServiceRequestApp{
 }
 @enduml
