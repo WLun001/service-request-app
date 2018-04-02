@@ -2,26 +2,27 @@
 title Assign technician to service request
 Actor ServiceManager
 Boundary AppUI
+Entity PersonList
 Control Controller
-Collections ServiceRequestList
-ServiceManager -> AppUI: AssignTechnician()
+Entity ServiceRequest
 
-AppUI -> Controller: GetTechnician()
-AppUI <-- Controller: List<Technician>
-Controller -> ServiceRequestList: GetTechnician()
-Controller <-- ServiceRequestList: List<Technician>
-'loop not found
-'    AppUI -> Controller : searchServiceRequest(requestId)
-'    AppController -> ServiceRequestList : search(requestId)
-'    alt request found
-'        ServiceRequestList --> Controller : request
-'        Controller --> AppUI : success
-'    else request not found
-'        ServiceRequestList --> Controller : Error("Service request not found")
-'        Controller --> AppUI : error
-'    end
-'end
-ServiceManager <-- AppUI: Technician
+ServiceManager -> AppUI: AssignTechnician()
+AppUI -> PersonList : search(techId)
+loop technician not found
+    PersonList --> AppUI : technician
+end
+AppUI -> Controller : assignTechnician(technician)
+alt serviceRequest != null
+    Controller -> ServiceRequest : setTechnician(technician)
+else throw Exception
+    Controller --> AppUI
+end
+ServiceRequest --> Controller
+Controller --> AppUI
+AppUI --> ServiceManager
+
+
+
 
 
 @enduml

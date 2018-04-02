@@ -7,7 +7,7 @@ Collections ServiceRequestList
 ServiceManager -> AppUI : SearchTechnician()
 AppUI -> Controller :  SearchTechnician()
 Controller -> ServiceRequestList : SearchTechnician()
-ServiceRequestList --> Controller
-Controller --> AppUI
-AppUI --> ServiceManager
+ServiceRequestList --> Controller : Technician
+Controller --> AppUI : Technician
+AppUI --> ServiceManager : Technician
 @enduml
