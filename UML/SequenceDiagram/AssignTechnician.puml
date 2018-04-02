@@ -1,6 +1,9 @@
 @startuml
 title Assign technician to service request
 Actor ServiceManager
+Boundary AppUI
+Control Controller
+Collections ServiceRequestList
 ServiceManager -> AppUI: AssignTechnician()
 
 AppUI -> Controller: GetTechnician()

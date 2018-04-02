@@ -6,8 +6,8 @@ Control Controller
 Collections ServiceRequestList
 
 ServiceManager -> AppUI: createServiceRequest()
-AppUI -> Controller: createServiceRequest()
-Controller -> ServiceRequestList: createServiceRequest()
+AppUI -> Controller: createServiceRequest(clientId)
+Controller -> ServiceRequestList: createServiceRequest(clientId)
 create entity ServiceRequest
 ServiceRequestList -> ServiceRequest: <<create >>
 

@@ -1,0 +1,7 @@
+@startuml
+Actor ServiceManager
+Boundary AppUI
+Control Controller
+Collections ServiceRequestList
+
+@enduml

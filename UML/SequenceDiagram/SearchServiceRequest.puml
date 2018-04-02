@@ -1,0 +1,13 @@
+@startuml
+Actor ServiceManager
+Boundary AppUI
+Control Controller
+Collections ServiceRequestList
+
+ServiceManager -> AppUI : SearchTechnician()
+AppUI -> Controller :  SearchTechnician()
+Controller -> ServiceRequestList : SearchTechnician()
+ServiceRequestList --> Controller
+Controller --> AppUI
+AppUI --> ServiceManager
+@enduml
