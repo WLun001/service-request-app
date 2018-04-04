@@ -1,7 +1,23 @@
 @startuml
+title Add service charge to service request
 Actor ServiceManager
 Boundary AppUI
 Control Controller
 Collections ServiceRequestList
+Entity ServiceRequest
 
+ServiceManager -> AppUI: addServiceCharge()
+AppUI -> Controller : searchServiceRequest(requestId)
+loop service request not found
+Controller -> ServiceRequestList : searchServiceRequest(requestId)
+ServiceRequestList --> Controller : serviceRequest
+end
+Controller --> AppUI : serviceRequest
+AppUI -> Controller : addServiceCharge(amount)
+Controller -> ServiceRequestList : addServiceCharge(amount)
+ServiceRequestList -> ServiceRequest : setServiceCharge(amount)
+ServiceRequest --> ServiceRequestList
+ServiceRequestList --> Controller
+Controller --> AppUI
+AppUI --> ServiceManager
 @enduml

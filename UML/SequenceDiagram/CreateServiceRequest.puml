@@ -2,18 +2,23 @@
 title Create service request
 Actor ServiceManager
 Boundary AppUI
+Entity PersonList
 Control Controller
 Collections ServiceRequestList
 
 ServiceManager -> AppUI: createServiceRequest()
-AppUI -> Controller: createServiceRequest(clientId)
-Controller -> ServiceRequestList: createServiceRequest(clientId)
-create entity ServiceRequest
-ServiceRequestList -> ServiceRequest: <<create >>
-
-ServiceRequest --> ServiceRequestList
-ServiceRequestList --> Controller
-Controller --> AppUI
-AppUI --> ServiceManager
-
+AppUI -> PersonList : searchClient(clientId)
+loop client not found
+    PersonList --> AppUI : client
+end
+alt client != null
+    AppUI -> Controller : addServiceRequest(client, date)
+    Controller -> ServiceRequestList : addServiceRequest(client, date)
+    create entity ServiceRequest
+    ServiceRequestList -> ServiceRequest: <<create >>
+    ServiceRequest --> ServiceRequestList
+    ServiceRequestList --> Controller
+    Controller --> AppUI
+    AppUI --> ServiceManager
+end
 @enduml

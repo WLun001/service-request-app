@@ -14,12 +14,12 @@ end
 AppUI -> Controller : assignTechnician(technician)
 alt serviceRequest != null
     Controller -> ServiceRequest : setTechnician(technician)
-else throw Exception
-    Controller --> AppUI
+    ServiceRequest --> Controller
+    Controller -> AppUI
+    AppUI -> ServiceManager
+
 end
-ServiceRequest --> Controller
-Controller --> AppUI
-AppUI --> ServiceManager
+
 
 
 
