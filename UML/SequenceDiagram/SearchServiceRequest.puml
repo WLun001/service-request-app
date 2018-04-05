@@ -4,10 +4,13 @@ Boundary AppUI
 Control Controller
 Collections ServiceRequestList
 
-ServiceManager -> AppUI : SearchTechnician()
-AppUI -> Controller :  SearchTechnician()
-Controller -> ServiceRequestList : SearchTechnician()
-ServiceRequestList --> Controller : Technician
-Controller --> AppUI : Technician
-AppUI --> ServiceManager : Technician
+ServiceManager -> AppUI : searchServiceRequest()
+AppUI -> Controller :  searchServiceRequest(requestId)
+loop while service request not found
+Controller -> ServiceRequestList : searchServiceRequest(requestId)
+ServiceRequestList --> Controller : ServiceRequest
+Controller --> AppUI : ServiceRequest
+AppUI --> ServiceManager : ServiceRequest
+end
+
 @enduml
