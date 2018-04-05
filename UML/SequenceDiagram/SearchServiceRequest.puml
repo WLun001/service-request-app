@@ -1,4 +1,5 @@
 @startuml
+title SearchServiceRequest
 Actor ServiceManager
 Boundary AppUI
 Control Controller

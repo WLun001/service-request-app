@@ -1,4 +1,5 @@
 @startuml
+title Analysis Class Diagram
 service.dbHelper::Person <|-- service.dbHelper::Client
 service.dbHelper::Person <|-- service.dbHelper::Technician
 

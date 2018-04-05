@@ -1,5 +1,5 @@
 @startuml
-
+title Package Diagram
 service.ui .up.> service.dbHelper : <<use>>
 service.ui .up.> service.domain : <<use>>
 package "service.dbHelper" {

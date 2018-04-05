@@ -1,4 +1,5 @@
 @startuml
+title Design Class Diagram
 dbHelper::Person <|-- dbHelper::Client
 dbHelper::Person <|-- dbHelper::Technician
 
