@@ -6,6 +6,10 @@ Entity PersonList
 Control Controller
 Entity ServiceRequest
 
+ServiceManager -> AppUI : searchServiceRequest()
+ref over AppUI : SearchServiceRequest
+AppUI --> ServiceManager : ServiceRequest
+
 ServiceManager -> AppUI: AssignTechnician()
 AppUI -> PersonList : search(techId)
 loop technician not found
@@ -17,12 +21,5 @@ alt serviceRequest != null
     ServiceRequest --> Controller
     Controller -> AppUI
     AppUI -> ServiceManager
-
 end
-
-
-
-
-
-
 @enduml

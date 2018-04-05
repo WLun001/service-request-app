@@ -6,6 +6,10 @@ Control Controller
 Collections ServiceRequestList
 Entity ServiceRequest
 
+ServiceManager -> AppUI : searchServiceRequest()
+ref over AppUI : SearchServiceRequest
+AppUI --> ServiceManager : ServiceRequest
+
 ServiceManager -> AppUI: addServiceCharge()
 AppUI -> Controller : searchServiceRequest(requestId)
 loop service request not found
